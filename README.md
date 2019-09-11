@@ -1,5 +1,7 @@
-# thread-balancer
+#Server
 
-Thread load balancer
+## node server/master.js
 
-### To start server `node index.js`
+#Client
+
+## node client/master.js

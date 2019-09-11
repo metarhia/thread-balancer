@@ -1,29 +1,16 @@
 {
-  "name": "thread-balancer",
+  "name": "research",
   "version": "1.0.0",
-  "description": "Thread load balancer",
+  "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "node index.js"
+    "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/metarhia/thread-balancer.git"
-  },
-  "keywords": [
-    "threads",
-    "nodejs"
-  ],
-  "author": "",
-  "license": "MIT",
-  "bugs": {
-    "url": "https://github.com/metarhia/thread-balancer/issues"
-  },
-  "homepage": "https://github.com/metarhia/thread-balancer#readme",
   "devDependencies": {
     "eslint": "^5.16.0",
     "eslint-config-metarhia": "^7.0.0",
     "eslint-plugin-import": "^2.18.0"
-  }
+  },
+  "author": "",
+  "license": "MIT"
 }
