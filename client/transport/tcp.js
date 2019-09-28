@@ -11,7 +11,7 @@ module.exports = options => {
     const start = process.hrtime.bigint();
     let diff = 0n;
 
-    socket.connect({ port, hostname }, () => {
+    socket.connect({ port, host: hostname }, () => {
       socket.write('Run!');
     });
 

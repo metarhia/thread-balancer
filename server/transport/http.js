@@ -8,7 +8,7 @@ module.exports = options => {
   const requestLisntener = (req, res) => {
     const memory = process.memoryUsage();
 
-    ++count;
+    count++;
     res.end(JSON.stringify({ port, workerId: id, count, memory }));
   };
 

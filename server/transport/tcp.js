@@ -11,7 +11,7 @@ module.exports = options => {
 
     // receive data
     socket.on('data', data => {
-      ++count;
+      count++;
       // send data
       socket.write(JSON.stringify({ port, workerId: id, count, memory }));
     });

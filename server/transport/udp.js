@@ -9,8 +9,8 @@ module.exports = options => {
   let count = 0;
 
   const debounce = (f, ms) => {
-    let timeout;
-    return function(...args) {
+    let timeout = null;
+    return (...args) => {
       const later = () => {
         timeout = null;
         f(args);
