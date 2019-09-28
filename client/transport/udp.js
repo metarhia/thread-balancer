@@ -1,20 +1,42 @@
 'use strict';
 
 module.exports = options => {
-  const { ports, hostname, connections } = options;
-  const port = ports[0];
-
   const dgram = require('dgram');
 
-  const message = Buffer.from('Hello');
-  const client = dgram.createSocket('udp4');
+  const { ports, hostname } = options;
 
-  client.send(message, port, hostname, err => {
-    if (err) {
-      client.close();
-      throw err;
+  const requester = port =>
+    new Promise((resolve, reject) => {
+      const message = Buffer.from('Hello');
+      const client = dgram.createSocket('udp4');
+
+      client.send(message, port, hostname, err => {
+        if (err) {
+          client.close();
+          reject(err);
+        }
+
+        client.close();
+        resolve();
+      });
+    });
+
+  async function requesterAsync(port) {
+    const TIME = 60000000001n;
+    const start = process.hrtime.bigint();
+    let diff = 0n;
+
+    while (diff < TIME) {
+      const end = process.hrtime.bigint();
+      try {
+        await requester(port);
+      } catch (err) {
+        console.log(err);
+      }
+      // console.log(data);
+      diff = end - start;
     }
+  }
 
-    client.close();
-  });
+  ports.forEach(port => requesterAsync(port));
 };
