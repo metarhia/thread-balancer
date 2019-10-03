@@ -33,7 +33,7 @@ module.exports = options => {
       } catch (err) {
         console.log(err);
       }
-      // console.log(data);
+
       diff = end - start;
     }
   }
