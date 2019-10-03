@@ -17,15 +17,9 @@ module.exports = options => {
       };
 
       const req = http.request(settings, res => {
-        // console.log(`STATUS: ${res.statusCode}`);
-        // console.log(`HEADERS: ${JSON.stringify(res.headers)}`);
         res.setEncoding('utf8');
         res.on('data', chunk => {
           resolve(chunk);
-          // console.log(`From server: ${chunk}`);
-        });
-        res.on('end', () => {
-          // console.log('No more data in response.');
         });
       });
 
@@ -34,8 +28,6 @@ module.exports = options => {
         console.error(`problem with request: ${e.message}`);
       });
 
-      // Write data to request body
-      // req.write(postData);
       req.end();
     });
 
@@ -52,7 +44,7 @@ module.exports = options => {
       } catch (err) {
         console.log(err);
       }
-      // console.log(data);
+
       diff = end - start;
     }
     // logger
