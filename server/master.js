@@ -22,3 +22,7 @@ ports.forEach(port => {
     console.log('Worker exited with code:', code);
   });
 });
+
+setInterval(() => {
+  console.log(process.memoryUsage());
+}, 3000);

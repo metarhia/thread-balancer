@@ -25,7 +25,7 @@ module.exports = options => {
 
       req.on('error', e => {
         reject(e.message);
-        console.error(`problem with request: ${e.message}`);
+        // console.error(`problem with request: ${e.message}`);
       });
 
       req.end();
@@ -42,7 +42,7 @@ module.exports = options => {
       try {
         data = await requester(port);
       } catch (err) {
-        console.log(err);
+        // console.log(err);
       }
 
       diff = end - start;
