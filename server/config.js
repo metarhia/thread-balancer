@@ -1,10 +1,10 @@
 'use strict';
 
 module.exports = {
-  ports: [3000, 3001, 3002, 3003],
+  ports: [3010, 3011, 3012, 3013],
   hostname: '127.0.0.1',
-  spawnerName: 'threads', //processes, threads
+  spawnerName: 'processes', //processes, threads
   transportName: 'http', // http, tcp, udp
-  disconnect: 1, // quantity
-  delay: 20000,
+  disconnect: 2, // quantity
+  delay: 5000,
 };

@@ -8,12 +8,20 @@ const transportPath = path.join(__dirname, 'transport', `${transportName}.js`);
 const spawnerPath = path.join(__dirname, 'spawner', `${spawnerName}.js`);
 
 const transport = require(transportPath);
-const { port, hostname, id, isDisconnect } = require(spawnerPath);
+const { port, hostname, id, isDisconnect, parentPort } = require(spawnerPath);
 
 // run
 transport({ port, hostname, id });
 
 // disconnect
 if (JSON.parse(isDisconnect)) {
-  setTimeout(() => process.exit(1), delay);
+  setTimeout(() => {
+    if (parentPort) {
+      parentPort.postMessage({ port });
+    } else {
+      process.send({ port });
+    }
+
+    process.exit(1);
+  }, delay);
 }
