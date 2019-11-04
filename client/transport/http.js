@@ -1,8 +1,9 @@
 'use strict';
 
 module.exports = options => {
-  const { ports, hostname } = options;
+  const { ports, hostname, logFile } = options;
   const http = require('http');
+  const fs = require('fs');
 
   const requester = port =>
     new Promise((resolve, reject) => {
@@ -34,6 +35,8 @@ module.exports = options => {
   async function requesterAsync(port) {
     const TIME = 60000000001n;
     const start = process.hrtime.bigint();
+    const log = `${logFile}_${port}.log`;
+
     let diff = 0n;
     let data = null;
 
@@ -48,7 +51,17 @@ module.exports = options => {
       diff = end - start;
     }
     // logger
-    console.log(data);
+    // console.log(data);
+    logger(log, data);
+  }
+
+  function logger(file, data) {
+    const ws = fs.createWriteStream(file, { flags: 'a' }, 'utf-8');
+    ws.write(data);
+    ws.on('finish', () => {
+      console.log('Wrote log to file!');
+    });
+    ws.end();
   }
 
   // run on different ports
