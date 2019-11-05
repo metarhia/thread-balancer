@@ -12,5 +12,8 @@
     "eslint-plugin-import": "^2.18.0"
   },
   "author": "",
-  "license": "MIT"
+  "license": "MIT",
+  "dependencies": {
+    "os-utils": "0.0.14"
+  }
 }
