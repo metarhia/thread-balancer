@@ -40,8 +40,8 @@ ports.forEach(port => {
 // get CPU and memory usage
 setInterval(() => {
   cpuFree(v => {
-    logger(logCPU, `${(v * 100).toFixed(0)},`);
-    logger(logMemory, `${(freememPercentage() * 100).toFixed(0)},`);
+    logger(logCPU, `${v * 100},`);
+    logger(logMemory, `${freememPercentage() * 100},`);
   });
 }, 1000);
 
