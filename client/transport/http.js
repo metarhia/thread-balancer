@@ -62,13 +62,14 @@ module.exports = options => {
     logger(file, data);
   }
 
-  function logger(file, data) {
-    const ws = fs.createWriteStream(file, { flags: 'a' }, 'utf-8');
-    ws.write(data);
-    ws.on('finish', () => {
-      console.log('Wrote log to file!');
+  async function logger(file, data) {
+    return new Promise((res, rej) => {
+      const ws = fs.createWriteStream(file, { flags: 'a' }, 'utf-8');
+      ws.write(data);
+      ws.on('finish', () => res('Wrote log to file!'));
+      ws.on('error', e => rej(e));
+      ws.end();
     });
-    ws.end();
   }
 
   // run on different ports
