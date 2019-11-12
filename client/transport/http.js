@@ -32,7 +32,7 @@ module.exports = options => {
       req.end();
     });
 
-  async function requesterAsync(port) {
+const requesterAsync = async port => {
     const TIME = 60000000001n;
     const start = process.hrtime.bigint();
     const file = `${logFile}_${port}.log`;
