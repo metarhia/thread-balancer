@@ -63,7 +63,7 @@ const requesterAsync = async port => {
   }
 
   async function logger(file, data) {
-    return new Promise((res, rej) => {
+    return new Promise((resolve, reject) => {
       const ws = fs.createWriteStream(file, { flags: 'a' }, 'utf-8');
       ws.write(data);
       ws.on('finish', () => res('Wrote log to file!'));
