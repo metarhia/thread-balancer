@@ -45,13 +45,14 @@ module.exports = options => {
     });
   };
 
-  function logger(file, data) {
-    const ws = fs.createWriteStream(file, { flags: 'a' }, 'utf-8');
-    ws.write(data);
-    ws.on('finish', () => {
-      console.log('Wrote log to file!');
+  async function logger(file, data) {
+    return new Promise((resolve, reject) => {
+      const ws = fs.createWriteStream(file, { flags: 'a' }, 'utf-8');
+      ws.write(data);
+      ws.on('finish', () => resolve('Wrote log to file!'));
+      ws.on('error', e => reject(e));
+      ws.end();
     });
-    ws.end();
   }
 
   ports.forEach(port => requesterAsync(port));

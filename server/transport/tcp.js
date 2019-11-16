@@ -9,10 +9,8 @@ module.exports = options => {
   const connection = socket => {
     const memory = process.memoryUsage();
 
-    // receive data
     socket.on('data', data => {
       count++;
-      // send data
       socket.write(JSON.stringify({ port, workerId: id, count, memory }));
     });
 
