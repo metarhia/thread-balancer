@@ -40,7 +40,7 @@ const requesterAsync = async port => {
     const logMaxTime = 50000999999n;
 
     let diff = 0n;
-    let data = null;
+    let data = '';
 
     while (diff < TIME) {
       const end = process.hrtime.bigint();
