@@ -5,14 +5,15 @@ module.exports = options => {
   const net = require('net');
   const fs = require('fs');
 
+  const TIME = 60000000001n;
+  const logMinTime = 50000000000n;
+  const logMaxTime = 50000999999n;
+
   const requesterAsync = port => {
     const socket = new net.Socket();
-
-    const TIME = 60000000001n;
     const start = process.hrtime.bigint();
     const file = `${logFile}_${port}.log`;
-    const logMinTime = 50000000000n;
-    const logMaxTime = 50000999999n;
+
 
     let diff = 0n;
 

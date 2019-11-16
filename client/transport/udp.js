@@ -2,6 +2,7 @@
 
 module.exports = options => {
   const dgram = require('dgram');
+  const TIME = 60000000001n;
 
   const { ports, hostname } = options;
 
@@ -22,7 +23,6 @@ module.exports = options => {
     });
 
   const requesterAsync = async port => {
-    const TIME = 60000000001n;
     const start = process.hrtime.bigint();
     let diff = 0n;
 

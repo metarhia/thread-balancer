@@ -5,6 +5,11 @@ module.exports = options => {
   const http = require('http');
   const fs = require('fs');
 
+  const TIME = 60000000001n;
+  const logMinTime = 50000000000n;
+  const logMaxTime = 50000999999n;
+
+
   const requester = port =>
     new Promise((resolve, reject) => {
       const settings = {
@@ -33,14 +38,11 @@ module.exports = options => {
     });
 
 const requesterAsync = async port => {
-    const TIME = 60000000001n;
     const start = process.hrtime.bigint();
     const file = `${logFile}_${port}.log`;
-    const logMinTime = 50000000000n;
-    const logMaxTime = 50000999999n;
 
     let diff = 0n;
-    let data = '';
+    let data = [];
 
     while (diff < TIME) {
       const end = process.hrtime.bigint();
