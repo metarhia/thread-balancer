@@ -13,7 +13,7 @@ module.exports = options => {
     const socket = new net.Socket();
     const start = process.hrtime.bigint();
     const file = `${logFile}_${port}.log`;
-
+    const dataArr = [];
 
     let diff = 0n;
 
@@ -29,12 +29,13 @@ module.exports = options => {
 
         // logging after 50s
         if (diff < logMaxTime && diff > logMinTime) {
+          dataArr.push(data);
           logger(file, data);
         }
       } else {
         // logging after 60s
-        data += '>----separator----<';
-        logger(file, data);
+        dataArr.push(data, '>----separator----<');
+        logger(file, dataArr.join(','));
       }
 
       diff = end - start;
