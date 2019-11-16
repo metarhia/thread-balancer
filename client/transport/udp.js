@@ -21,7 +21,7 @@ module.exports = options => {
       });
     });
 
-  async function requesterAsync(port) {
+  const requesterAsync = async port => {
     const TIME = 60000000001n;
     const start = process.hrtime.bigint();
     let diff = 0n;
